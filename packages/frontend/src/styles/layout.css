@@ -1,0 +1,159 @@
+/* Main Layout Styles */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+@media (min-width: 48rem) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-3) 0;
+}
+
+@media (min-width: 48rem) {
+  .main-content {
+    padding: var(--space-5) 0;
+  }
+}
+
+/* Grid System */
+.grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 48rem) {
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Navbar */
+.navbar {
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-sticky);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  background-color: var(--color-background-main);
+  border-bottom: 1rem solid
+
+}
+
+.mobile-dropdown{
+  display: none;
+
+}
+.logo {
+  font-size: var(--font-size-logo);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-titlesWorkouts);
+}
+
+/* DESKTOP-FIRST: show links, hide hamburger */
+.nav-links {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.mobile-menu-button {
+  display: none;
+}
+
+/* MOBILE OVERRIDE */
+@media (max-width: 48rem) {
+  .nav-links {
+    display: none;
+  }
+  .mobile-dropdown {
+    display: block;
+  }
+}
+
+.nav-link.open {
+  color: var(--color-background-drillBut);
+  font-weight: var(--font-weight-medium);
+  position: relative;
+  transition: color var(--transition-fast);
+  display: flex;
+  margin-right: 2rem;
+}
+
+.nav-link:hover {
+  color: var(--color-background-accent);
+}
+
+.nav-link.active {
+  color: var(--color-background-accent);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  background-color: white;
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-index-dropdown);
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3);
+}
+
+.mobile-menu-link {
+  padding: var(--space-3);
+  color: var(--color-background-drillBut);
+  font-weight: var(--font-weight-medium);
+  border-bottom: .06rem solid var(--color-neutral-100);
+}
+
+.mobile-menu-link:last-child {
+  border-bottom: none;
+}
+
+/* Page Sections */
+.page-header {
+  margin-bottom: var(--space-4);
+}
+
+.section {
+  margin-bottom: var(--space-5);
+}
+
+.section-title {
+  margin-bottom: var(--space-3);
+  color: var(--color-font-mainText);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-sectTitle);
+}

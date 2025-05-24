@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import 'reset.css';
+@import 'variables.css';
+@import 'components.css';
+@import 'layout.css';
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-background-main);
+  color: var(--color-font-mainText);
+  line-height: var(--line-height-body);
+}
+
+/* Dashboard Specific */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stat-card {
+  background-color: var(---color-bg-compnent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: var(--font-size-statValue);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-titlesWorkouts);
+  margin-bottom: var(--space-1);
+}
+
+.stat-label {
+  color: var(--color-statLabel);
+  font-size: var(--font-size-sm);
+}
+
+/* Program Cards */
+.program-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 48rem) {
+  .program-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.program-card {
+  background-color: var(---color-bg-compnent);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  margin-bottom: 2rem;
+}
+
+.program-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: var(--shadow-md);
+}
+
+.program-card-header {
+  background-color: var(--color-background-accent);
+  color: white;
+  padding: var(--space-3);
+}
+
+.program-card-title {
+  font-size: var(--font-size-logo);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-1);
+
+}
+
+.program-card-subtitle {
+  font-size: var(--font-size-sm);
+  opacity: 0.9;
+}
+
+.program-card-body {
+  padding: var(--space-3);
+}
+
+.program-features {
+  margin-top: var(--space-2);
+}
+
+.program-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.program-feature-icon {
+  color: var(--color-icon);
+  font-size: 1.2em;
+}
+
+/* Daily Program */
+.day-card {
+  background-color: var(---color-bg-compnent);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-3);
+  transition: transform var(--transition-fast);
+}
+
+.day-card:hover {
+  transform: translateY(-.01rem);
+}
+
+.day-card-header {
+  padding: var(--space-3);
+  background-color: var(--color-background-dayBut);
+  color: white;
+  font-weight: var(--font-weight-bold);
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.day-card-body {
+  padding: var(--space-3);
+}
+
+.drill {
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-2);
+  border-left: 0.2rem solid var(--color-icon);
+  background-color: var(--color-background-main);
+}
+
+.drill-title {
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-1);
+  color: var(--color-titlesWorkouts);
+}
+
+.drill-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-font-mainText);
+}
+
+/* History List */
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  background-color: var(---color-bg-compnent);
+  border-radius: 0.75rem;
+  margin-bottom: var(--space-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.history-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-item-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-background-main0);
+}
+
+.history-item-title {
+  font-weight: var(--font-weight-medium);
+}
+
+.history-item-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Program Details */
+.program-progress {
+  margin-bottom: var(--space-4);
+}
+
+.progress-bar-container {
+  height: 0.75rem;
+  background-color: var(--color-cardProgressBar);
+  border-radius: 600rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--color-background-accent);
+  width: 65%; /* Example progress value */
+  transition: width var(--transition-normal);
+}
+
+.program-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.program-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(38rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Completed Item */
+.completed {
+  position: relative;
+}
+

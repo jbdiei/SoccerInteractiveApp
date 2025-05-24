@@ -1,0 +1,97 @@
+:root {
+  /* Color Tokens */
+  --color-background-accent: #43a047;
+  --color-background-dayBut: #1e88e5;
+  --color-background-drillBut: #616161;
+  --color-background-formProgramBut: #66bb6a;
+  --color-background-hover: #ece8e8;
+  --color-background-main: #f5f2f2;
+  --color-border: #a0a0a0;
+  --color-cardProgressBar: #eeeeee;
+  --color-error-500: #f44336;
+  --color-font-mainText: #424242;
+  --color-hover-buttonSecondary: #1976d2;
+  --color-icon: #4caf50;
+  --color-program3: #b33229;
+  --color-statLabel: #757575;
+  --color-success-500: #4caf50;
+  --color-titlesWorkouts: #388e3c;
+  --color-warning-500: #ff9800;
+  ---color-bg-compnent: #ffffff;
+
+
+  /* Spacing Tokens */
+  --space-1: 0.25rem; 
+  --space-2: 0.5rem;  
+  --space-3: 1rem;    
+  --space-4: 1.5rem;  
+  --space-5: 2rem;    
+
+  /* Typography */
+  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-size-xs: 0.75rem;   
+  --font-size-sm: 0.875rem;  
+  --font-size-form: 1rem;    
+  --font-size-button: 1.125rem;  
+  --font-size-logo: 1.25rem;   
+  --font-size-statValue: 1.875rem; 
+
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --line-height-sectTitle: 1.2;  
+  --line-height-body: 1.5;  
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;   
+  --radius-md: 0.5rem;    
+  --radius-lg: 0.75rem;  
+
+  /* Shadows */
+  --shadow-md: 0 .25rem 0.4rem -.06rem rgba(0, 0, 0, 0.1), 0.1rem 0.25rem -0.063rem rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 0.6rem 0.9rem -.2rem rgba(0, 0, 0, 0.1), 0 025rem 0.375rem -.125rem rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+
+  /* Z-index */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+}
+
+html.dark {
+  /* Color Tokens */
+  --color-background-accent:       #2d7831;  /* dark green */
+  --color-background-dayBut:       #1565c0;  /* dark blue */
+  --color-background-drillBut:     #424242;  /* deep grey */
+  --color-background-formProgramBut: #388e3c; /* mid‐dark green */
+
+  --color-background-hover:        #2c2c2c;  /* very dark grey */
+  --color-background-main:         #343333;  /* near black */
+
+  --color-border:                  #333333;  /* dark border */
+  --color-cardProgressBar:         #333333;  /* dark progress track */
+
+  --color-error-500:               #e57373;  /* softer red on dark */
+  --color-warning-500:             #ffb74d;  /* softened amber */
+  --color-success-500:             #81c784;  /* light green accent */
+
+  --color-font-mainText:           #dcdcb7;  /* off-white text */
+  --color-statLabel:               #e8dada;  /* muted light grey */
+
+  --color-hover-buttonSecondary:   #0d47a1;  /* darker blue hover */
+  
+  --color-icon:                    #81c784;  /* light green icons */
+  --color-program3:                #d84315;  /* brighter red/orange */
+
+  --color-titlesWorkouts:          #66bb6a;  /* light green for headings */
+  ---color-bg-compnent: #111110;
+
+}
