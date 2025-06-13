@@ -1,12 +1,28 @@
 // File: src/pages/Dashboard.tsx
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { stats, programs, history as historyItems } from '../utils/mockData';
+import type { IAPIStat, IAPIProgram, IAPIHistoryItem } from '../../../backend/src/shared/APIProgramData';
+
 
 export default function Dashboard() {
-  // for fade-in delays
+  const [stats, setStats] = useState<IAPIStat[]>([]);
+  const [programs, setPrograms] = useState<IAPIProgram[]>([]);
+  const [historyItems, setHistoryItems] = useState<IAPIHistoryItem[]>([]);
+
   const delayClasses = ['', 'delay-100', 'delay-200'];
 
-  // derive a “current program” from your first mock program
+  useEffect(() => {
+    fetch('/api/dashboard-data')
+      .then(res => res.json())
+      .then(data => {
+        setStats(data.stats);
+        setPrograms(data.programs);
+        setHistoryItems(data.history);
+      });
+  }, []);
+
+  if (!programs.length) return <div>Loading...</div>;
+
   const currentProgram = {
     id: programs[0].id,
     title: programs[0].title,
@@ -16,7 +32,6 @@ export default function Dashboard() {
     daysLeft: 13,
   };
 
-  // use your history array as recent workouts
   const recentWorkouts = historyItems;
 
   return (

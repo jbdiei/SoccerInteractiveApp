@@ -1,20 +1,28 @@
-// File: src/pages/History.tsx
-import  { useState } from 'react';
-import type { HistoryItem } from '../utils/mockData';
-import { history as historyData } from '../utils/mockData';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useEffect, useState } from 'react';
+import type { IAPIHistoryItem } from '../../../backend/src/shared/APIProgramData'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-export default function History() {
-  // keep workouts in state so deletes persist until reload
-  const [items, setItems] = useState<HistoryItem[]>(historyData);
+export default function History({ authToken }: { authToken: string }) {
+  const [items, setItems] = useState<IAPIHistoryItem[]>([]);
+
+  useEffect(() => {
+    fetch('/api/history',
+    {
+      headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+    
+    })
+      .then(res => res.json())
+      .then(data => setItems(data));
+  }, []);
 
   const handleDelete = (id: string) => {
     setItems(prev => prev.filter(item => item.id !== id));
   };
 
-  // group by “Month Year”
-  const groups = items.reduce<Record<string, HistoryItem[]>>((acc, item) => {
+  const groups = items.reduce<Record<string, IAPIHistoryItem[]>>((acc, item) => {
     const dateObj = new Date(item.date);
     const monthYear = dateObj.toLocaleString('default', {
       month: 'long',
@@ -25,7 +33,6 @@ export default function History() {
     return acc;
   }, {});
 
-  // stat summary (hard-coded avgHours for now)
   const totalWorkouts = items.length;
   const programsStarted = new Set(items.map(i => i.program)).size;
   const avgHours = 5.8;
@@ -33,13 +40,11 @@ export default function History() {
   return (
     <main className="main-content">
       <div className="container">
-        {/* Page Header */}
         <header className="page-header">
           <h1 className="section-title">Workout History</h1>
           <p>Review all your past training sessions.</p>
         </header>
 
-        {/* All Workouts */}
         <section className="section">
           <h2 className="section-title">All Workouts</h2>
           {Object.entries(groups).map(([monthYear, workouts]) => (
@@ -51,9 +56,7 @@ export default function History() {
                     <span className="history-item-date">{workout.date}</span>
                     <span className="history-item-title">{workout.title}</span>
                     {workout.program && (
-                      <span className="badge badge-secondary">
-                        {workout.program}
-                      </span>
+                      <span className="badge badge-secondary">{workout.program}</span>
                     )}
                   </div>
                   <div className="history-item-actions">
@@ -71,7 +74,6 @@ export default function History() {
           ))}
         </section>
 
-        {/* Workout Summary */}
         <section className="section">
           <div className="card">
             <div className="card-header">

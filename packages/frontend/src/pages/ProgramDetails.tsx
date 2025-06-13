@@ -1,16 +1,50 @@
 // File: src/pages/ProgramDetails.tsx
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import type { IAPIProgramDetail } from "../../../backend/src/shared/APIProgramData";
 
-// import { useParams, Link } from 'react-router-dom';
-import {  Link } from 'react-router-dom';
+interface ProgramDetailsProps {
+  authToken: string;
+}
 
-import type { ProgramDetail } from '../utils/mockData';
-import { programDetails } from '../utils/mockData';
+export default function ProgramDetails({ authToken }: ProgramDetailsProps) {
+  const { id } = useParams<{ id: string }>();
+  const [program, setProgram] = useState<IAPIProgramDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default function ProgramDetails() {
-//   const { id } = useParams<{ id: string }>();
-  const program: ProgramDetail | undefined = programDetails.find(p => p.id === "1");
+  // ─── Mark a day as completed ───
+  function handleCompleteDay(dayId: string) {
+    setProgram((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        dayPlans: prev.dayPlans.map((day) =>
+          day.id === dayId ? { ...day, status: "Completed" } : day
+        ),
+      };
+    });
+  }
 
-  if (!program) {
+  useEffect(() => {
+    if (!id) return;
+
+    fetch(`/api/programs/${id}`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Program not found");
+        return res.json();
+      })
+      .then((data) => setProgram(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, [id, authToken]);
+
+  if (loading) return <div className="container">Loading...</div>;
+  if (error || !program) {
     return (
       <div className="container">
         <p>Sorry, we couldn’t find that program.</p>
@@ -32,8 +66,7 @@ export default function ProgramDetails() {
     tips,
   } = program;
 
-  // for animation delays
-  const delayClasses = ['', 'delay-100', 'delay-200'];
+  const delayClasses = ["", "delay-100", "delay-200"];
 
   return (
     <main className="main-content">
@@ -51,7 +84,7 @@ export default function ProgramDetails() {
           </div>
         </div>
 
-        {/* Progress */}
+        {/* Progress Section */}
         <section className="section">
           <h2>Progress</h2>
           <div className="card">
@@ -82,14 +115,14 @@ export default function ProgramDetails() {
           </div>
         </section>
 
-        {/* This Week’s Training Plan */}
+        {/* Day Plans Section */}
         <section className="section">
           <h2 className="section-title">This Week’s Training Plan</h2>
           {dayPlans.map((day, idx) => (
             <div
               key={day.id}
               className={`day-card ${
-                day.status === 'Completed' ? 'completed' : ''
+                day.status === "Completed" ? "completed" : ""
               } animate-fade-in ${delayClasses[idx]}`}
             >
               <div className="day-card-header">
@@ -97,7 +130,9 @@ export default function ProgramDetails() {
                   <h3>{day.label}</h3>
                   <span
                     className={`badge ${
-                      day.status === 'Completed' ? 'badge-success' : 'badge-outline'
+                      day.status === "Completed"
+                        ? "badge-success"
+                        : "badge-outline"
                     }`}
                   >
                     {day.status}
@@ -111,12 +146,24 @@ export default function ProgramDetails() {
                     <p className="drill-description">{drill.description}</p>
                   </div>
                 ))}
+                {day.status !== "Completed" ? (
+                    <button
+                      className="btn btn-success mt-2"
+                      onClick={() => handleCompleteDay(day.id)}
+                    >
+                      Mark as Completed
+                    </button>
+                  ) : (
+                    <button className="btn btn-disabled mt-2" disabled>
+                      Completed
+                    </button>
+                  )}
               </div>
             </div>
           ))}
         </section>
 
-        {/* Training Tips */}
+        {/* Tips Section */}
         <section className="section">
           <div className="card">
             <div className="card-header">

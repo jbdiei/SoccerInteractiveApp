@@ -1,0 +1,21 @@
+### New user registration
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "newuse",
+  "password": "password"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "newuse",
+  "password": "password"
+}
+
+### Get History
+GET http://localhost:3000/api/history
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ld3VzZSIsImlhdCI6MTc0OTc5MDQyNiwiZXhwIjoxNzQ5ODc2ODI2fQ.lMyD-CG0kBk_mtwoIBCAwW07n3N3M5aMx8RB50NRS30

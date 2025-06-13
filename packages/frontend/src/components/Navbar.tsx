@@ -14,6 +14,7 @@ export default function Navbar() {
     { to: '/',       label: 'Dashboard' },
     { to: '/programs', label: 'Programs' },
     { to: '/history',  label: 'History' },
+    { to: '/login',  label: 'Login' },
   ];
 
   return (
@@ -21,7 +22,7 @@ export default function Navbar() {
       <div className="container navbar-container">
         {/* Logo */}
         <Link to="/" className="logo">
-          SoccerSkills ⚽︎
+          SoccerSkills ⚽
         </Link>
 
         {/* Desktop Links */}
